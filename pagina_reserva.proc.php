@@ -16,12 +16,38 @@ session_start();
 			$user=$_SESSION['idUser'];	
 		}	
 			$conn=mysqli_connect('localhost','root','','bd_intranet');
-			$sql="UPDATE resources SET idEstado = 2 WHERE resources.idResource = $_REQUEST[id]";
-			echo $sql;
-			$sql_i="INSERT INTO registers (idRegister, data_ini, data_fin, idResource, idUser) VALUES (NULL, '$_REQUEST[fini]', '$_REQUEST[ffin]', '$_REQUEST[id]', '$user')";
-			echo $sql_i;
-			$datos=mysqli_query($conn,$sql);
-			$datos2=mysqli_query($conn,$sql_i);
+			$sql_comp="SELECT * FROM registers WHERE idResource=$_REQUEST[id]";
+			$datos_comp=mysqli_query($conn,$sql_comp);
+			$num_filas = mysqli_num_rows($datos_comp);
+			if ($num_filas!=0){	
+				while($comp=mysqli_fetch_array($datos_comp)){
+					if($comp['data_fin']>$_REQUEST['fini'] && $comp['data_fin']<=$_REQUEST['ffin']){
+						$generar=false;
+						$comp=0;
+						break;
+					}else{
+						if($comp['data_ini']>=$_REQUEST['fini'] && $comp['data_ini']<$_REQUEST['ffin']){
+							$generar=false;
+							break;
+						}else{
+							$generar=true;
+						}
+					}
+				}
+			}else{
+				$generar=true;
+			}
+			if($generar==true){
+				//$sql="UPDATE resources SET idEstado = 2 WHERE resources.idResource = $_REQUEST[id]";
+				//echo $sql;
+				$sql_i="INSERT INTO registers (idRegister, data_ini, data_fin, idResource, idUser) VALUES (NULL, '$_REQUEST[fini]', '$_REQUEST[ffin]', '$_REQUEST[id]', '$user')";
+				echo $sql_i;
+				//$datos=mysqli_query($conn,$sql);
+				$datos2=mysqli_query($conn,$sql_i);
+			}else{
+				echo "El producto esta ocupado en esa franja horaria";
+			}
+
 			//header("location:paginausuario_reservar.php");  
 		?>
 	</body>
