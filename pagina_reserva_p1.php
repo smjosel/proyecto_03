@@ -1,84 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" type="text/css" href="./jquery.datetimepicker.css"/>
-<style type="text/css">
 
-.custom-date-style {
-	background-color: red !important;
-}
+<link rel="stylesheet" type="text/css" href="./js/jquery.datetimepicker.css"/ >
+<script src="./js/jquery.js"></script>
+<script src="./js/build/jquery.datetimepicker.full.min.js"></script>
 
-.input{	
+<?php
+if(!empty($_SESSION['usuario'])) {	// Sesion de un usuario			
+	$user=$_SESSION['idUser'];
+} elseif(!empty($_SESSION['admin'])) {		//sesion de un administrador
+	$user=$_SESSION['idUser'];
+} else {
+	?>
+	<p>No estas logeado</p>
+	<?php
 }
-.input-wide{
-	width: 500px;
-}
+?>
+	<form action="pagina_reserva.proc.php" method="GET">
+		<h3>Define el tiempo de tu reserva</h3>
+		<input type="hidden" name="id" value="<?php echo $_REQUEST['id']; ?>">
+		Fecha de inicio: <input type="text" name="fini" class="some_class" value="" id="fini"/>
+		Fecha de devolución: <input type="text" name="ffin" class="some_class" value="" id="ffin"/>
+		<script>
+			jQuery.datetimepicker.setLocale('es');
+			jQuery('#fini').datetimepicker({
+			  format:'Y-m-d H:i:00'
+			});
+			jQuery('#ffin').datetimepicker({
+			  format:'Y-m-d H:i:00'
+			});
+		</script>
+		<input type="submit" value="Enviar">
+	</form>
+<?php
+	// $hoy = date("Y-m-d H:i:s");
+	// $conn=mysqli_connect('localhost','root','','bd_intranet');
+	// $sql="UPDATE resources SET idEstado = 2 WHERE resources.idResource = $_REQUEST[id]";
+	// //echo $sql;
+	// //echo $_SESSION['resRecurso']."kjhsadkjfhksadjhfksajdfhksajdfh<br><br><br>";
+	// $sql_i="INSERT INTO registers (idRegister, data_ini, data_fin, idResource, idUser) VALUES (NULL, '$hoy', NULL, '$_REQUEST[id]', '$user')";
+	// //echo $sql_i;
+	// $datos=mysqli_query($conn,$sql);
+	// $datos2=mysqli_query($conn,$sql_i);
+	// header("location:paginausuario_reservar.php");  
 
-</style>
-</head>
-<body>
-	
-	<p><a href="http://xdsoft.net/jqplugins/datetimepicker/">Homepage</a></p>
-	<h3>DateTimePicker</h3>
-	<input type="text" value="" id="datetimepicker"/><br><br>
-  <h3>DateTimePickers selected by class</h3>
-	<input type="text" class="some_class" value="" id="some_class_1"/>
-	<input type="text" class="some_class" value="" id="some_class_2"/>
-	<h3>Mask DateTimePicker</h3>
-	<input type="text" value="" id="datetimepicker_mask"/><br><br>
-	<h3>TimePicker</h3>
-	<input type="text" id="datetimepicker1"/><br><br>
-	<h3>DatePicker</h3>
-	<input type="text" id="datetimepicker2"/><br><br>
-	<h3>Inline DateTimePicker</h3>
-	<!--<div id="console" style="background-color:#fff;color:red">sdfdsfsdf</div>-->
-	<input type="text" id="datetimepicker3"/><input type="button" onclick="$('#datetimepicker3').datetimepicker({value:'2011/12/11 12:00'})" value="set inline value 2011/12/11 12:00"/><br><br>
-	<h3>Button Trigger</h3>
-	<input type="text" value="2013/12/03 18:00" id="datetimepicker4"/><input id="open" type="button" value="open"/><input id="close" type="button" value="close"/><input id="reset" type="button" value="reset"/>
-	<h3>TimePicker allows time</h3>
-	<input type="text" id="datetimepicker5"/><br><br>
-	<h3>Destroy DateTimePicker</h3>
-	<input type="text" id="datetimepicker6"/><input id="destroy" type="button" value="destroy"/>
-	<h3>Set options runtime DateTimePicker</h3>
-	<input type="text" id="datetimepicker7"/>
-	<p>If select day is Saturday, the minimum set 11:00, otherwise 8:00</p>
-	<h3>onGenerate</h3>
-	<input type="text" id="datetimepicker8"/>
-	<h3>disable all weekend</h3>
-	<input type="text" id="datetimepicker9"/>
-	<h3>Default date and time </h3>
-	<input type="text" id="default_datetimepicker"/>
-	<h3>Show inline</h3>
-	<a href="javascript:void(0)" onclick="var si = document.getElementById('show_inline').style; si.display = (si.display=='none')?'block':'none';return false; ">Show/Hide</a>
-	<div id="show_inline" style="display:none">
-		<input type="text" id="datetimepicker10"/>
-	</div>
-	<h3>Disable Specific Dates</h3>
-	<p>Disable the dates 2 days from now.</p>
-	<input type="text" id="datetimepicker11"/>
-	<h3>Custom Date Styling</h3>
-	<p>Make the background of the date 2 days from now bright red.</p>
-	<input type="text" id="datetimepicker12"/>
-	<h3>Dark theme</h3>
-	<p>thank for this <a href="https://github.com/lampslave">https://github.com/lampslave</a></p>
-	<input type="text" id="datetimepicker_dark"/>
-	<h3>Date time format and locale</h3>
-	<p></p>
-	<select id="datetimepicker_format_locale">
-		<option value="en">English</option>
-		<option value="de">German</option>
-		<option value="ru">Russian</option>
-		<option value="uk">Ukrainian</option>
-		<option value="fr">French</option>
-		<option value="es">Spanish</option>
-	</select>
-	<input type="text" value="D, l, M, F, Y-m-d H:i:s" id="datetimepicker_format_value"/>
-	<input type="button" value="applay =>" id="datetimepicker_format_change"/>
-	<input type="text" id="datetimepicker_format" class="input input-wide"/>
-</body>
-<script src="./jquery.js"></script>
-<script src="build/jquery.datetimepicker.full.js"></script>
+	// $hoy = date("Y-m-d H:i:s");
+	// $conn=mysqli_connect('localhost','root','','bd_intranet');
+	// $sql_o="SELECT * FROM registers WHERE idresource = $_SESSION[idrecurso] AND data_fin IS NULL";
+	// $sql="UPDATE resources SET idEstado = 1 WHERE resources.idResource = $_SESSION[idrecurso]";
+	// $datos3=mysqli_query($conn,$sql_o);
+	// $datos=mysqli_query($conn,$sql);
+	// $valorcito=mysqli_fetch_array($datos3);
+	// $sql_i="UPDATE registers SET data_fin = '$hoy' WHERE registers.idRegister = $valorcito[idRegister]";
+	// $datos2=mysqli_query($conn,$sql_i);
+	// echo $sql."</br>".$sql_i;
+	// unset($_SESSION['reserva']);
+	// unset($_SESSION['idRecurso']);
+
+	//header("location:paginausuario_reservar.php");
+//header("location:paginausuario_reservar.php");
+
+
+?>
 <script>/*
 window.onerror = function(errorMsg) {
 	$('#console').html($('#console').html()+'<br>'+errorMsg)
@@ -218,4 +200,3 @@ $('#datetimepicker_dark').datetimepicker({theme:'dark'})
 
 
 </script>
-</html>

@@ -11,7 +11,6 @@
 				//alert ("The selected option is " + selectedOption);
 				document.formulario_reservas.submit();
 			}
-					
 		</script>
 	</head>
 	<body>
@@ -127,9 +126,9 @@
 									    echo "<td>".$valor['nomR']."</td>";
 									    echo "<td>".$valor['nomEstado']."</td>";
 									    if ($valor['nomEstado']=="Disponible"){
-									    	echo "<td><a href=pagina_reserva.proc.php?id=$valor[idResource]>Reservar</a></td>";
+									    	echo "<td><a href=pagina_reserva_p0.php?id=$valor[idResource]>Reservar</a></td>";
 									    } else {
-									    	echo "<td><a href=pagina_anular.proc.php?id=$valor[idResource]>Anular</a></td>";
+									    	echo "<td><a href=pagina_anular_p0.php?id=$valor[idResource]>Anular</a></td>";
 									    }
 								    echo "</tr>";
 								}
@@ -162,9 +161,9 @@
 									    echo "<td>".$valor['nomR']."</td>";
 									    echo "<td>".$valor['nomEstado']."</td>";
 									    if ($valor['nomEstado']=="Disponible"){
-									    	echo "<td><a href=pagina_reserva.proc.php?id=$valor[idResource]>Reservar</a></td>";
+									    	echo "<td><a href=pagina_reserva_p0.php?id=$valor[idResource]>Reservar</a></td>";
 									    } else {
-									    	echo "<td><a href=pagina_anular.proc.php?id=$valor[idResource]>Anular</a></td>";
+									    	echo "<td><a href=pagina_anular_p0.php?id=$valor[idResource]>Anular</a></td>";
 									    }
 								    echo "</tr>";
 								}

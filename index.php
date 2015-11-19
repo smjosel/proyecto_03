@@ -7,12 +7,15 @@
 	<title>Login</title>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
-
-
+    <script language="javascript" type="text/javascript">
+        function desactivado(){
+            alert ("Usuario desactivado")
+        }
+    </script>
 </head>
 
 <body>
-    
+
 <center><img src="images/logologin.png"></center>
     <div id="login">
         
@@ -30,6 +33,16 @@
 
 
     </div>
+<?php
+    if(isset($_REQUEST['visible'])){
+?>
+    <script type="text/javascript">
 
+        desactivado();
+
+    </script>
+<?php
+    }
+?>
 </body>
 </html>
