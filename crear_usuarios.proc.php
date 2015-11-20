@@ -7,7 +7,7 @@
 	<body>
 		<?php
 			//realizamos la conexión con mysql
-			$con = mysqli_connect('localhost', 'root', '', 'bd_intranet');
+			$con = mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 			$sql = "INSERT INTO users (nomUser, mail, telf, password, privilegios) VALUES ('$_REQUEST[nom]', '$_REQUEST[mail]', $_REQUEST[telf], '$_REQUEST[pass]', '$_REQUEST[privilegios]')";
 
 			//echo $sql;

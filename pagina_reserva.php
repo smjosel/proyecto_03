@@ -26,7 +26,7 @@
 			//if ((!isset($_SESSION['resRecurso'])) OR (!isset($_SESSION['anuRecurso'])))
 				if(isset($_SESSION['resRecurso'])){
 					$hoy = date("Y-m-d H:i:s");
-					$conn=mysqli_connect('localhost','root','','bd_intranet');
+					$conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 					$sql="UPDATE resources SET idEstado = 2 WHERE resources.idResource = $_SESSION[resRecurso]";
 					//echo $sql;
 					//echo $_SESSION['resRecurso']."kjhsadkjfhksadjhfksajdfhksajdfh<br><br><br>";
@@ -42,7 +42,7 @@
 						</script>';    
 				}elseif (isset($_SESSION['anuRecurso'])){
 					$hoy = date("Y-m-d H:i:s");
-					$conn=mysqli_connect('localhost','root','','bd_intranet');
+					$conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 					$sql_o="SELECT * FROM registers WHERE idresource =$_SESSION[anuRecurso] AND data_fin IS NULL";
 					$sql="UPDATE resources SET idEstado = 1 WHERE resources.idResource = $_SESSION[anuRecurso]";
 					//echo $sql_i;
@@ -82,7 +82,7 @@
 							$id = $_REQUEST['idresource'];
 							//echo $id."AQUIIIIIIIIIIIIIIIIIIII ESTA EL ID";
 							//echo $id;
-							$conn=mysqli_connect('localhost','root','','bd_intranet');
+							$conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 							//$sql="SELECT resources.*, resourcestype.*, estadoinfo.*, registres.* FROM (((resourcestype INNER JOIN resources ON resourcestype.idRType=resources.idRType) INNER JOIN estadoinfo ON resources.idEstado=estadoinfo.idEstado)INNER JOIN registres ON registres.idRegistre=resources.idResource) WHERE resources.idResource=".$id;
 							$sql="SELECT resources.*, resourcestype.*, estadoinfo.* FROM ((resourcestype INNER JOIN resources ON resourcestype.idRType=resources.idRType) INNER JOIN estadoinfo ON resources.idEstado=estadoinfo.idEstado) WHERE resources.idResource=".$id;
 							$datos=mysqli_query($conn,$sql);

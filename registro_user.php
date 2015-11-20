@@ -8,7 +8,7 @@
 	<body>
 		<?php
 		//Conexion a la BBDD.
-		$con=mysqli_connect('localhost','root','','bd_intranet');
+		$con=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 		$sql="SELECT * FROM users ORDER BY idUser ASC";
 		//lanzamos la sentencia sql
 		$datos = mysqli_query($con, $sql);

@@ -7,7 +7,7 @@
 	<body>
 		<?php
 			//realizamos la conexión con mysql
-			$con = mysqli_connect('localhost', 'root', '', 'bd_intranet');
+			$con = mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 
 			//esta consulta devuelve todos los datos del producto cuyo campo clave (pro_id) es igual a la id que nos llega por la barra de direcciones
 			$sql = "SELECT * FROM users WHERE idUser=$_REQUEST[id]";

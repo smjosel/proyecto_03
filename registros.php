@@ -5,7 +5,7 @@
 //Iniciamos la sesión
 
 		
-$con = mysqli_connect('localhost','root','','bd_intranet');
+$con = mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 $sql = "SELECT users.*,resources.*,resourcestype.*,registers.*,estadoinfo.* FROM ((((resourcestype INNER JOIN resources ON resourcestype.idRType=resources.idRType) INNER JOIN registers ON resources.idResource=registers.idResource) INNER JOIN users ON users.idUser=registers.idUser) INNER JOIN estadoinfo ON resources.idEstado=estadoinfo.idEstado)";
 
 if(!empty($_SESSION['usuario'])){		//Aqui introducimos lo que puede ver un usuario con una cuentra normal

@@ -7,6 +7,11 @@ session_start();
 	<head>
 		<meta charset="utf-8"/>
 		<title>Insertar registro</title>
+		<script language="javascript" type="text/javascript">
+        function prod_ocupado(){
+            alert ("El producto esta ocupado en la franja horaria seleccionada")
+        }
+    	</script>
 	</head>
 	<body>
 		<?php
@@ -15,7 +20,7 @@ session_start();
 		}else if(!empty($_SESSION['admin'])){ 	
 			$user=$_SESSION['idUser'];	
 		}	
-			$conn=mysqli_connect('localhost','root','','bd_intranet');
+			$conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 			$sql_comp="SELECT * FROM registers WHERE idResource=$_REQUEST[id]";
 			$datos_comp=mysqli_query($conn,$sql_comp);
 			$num_filas = mysqli_num_rows($datos_comp);
@@ -46,17 +51,27 @@ session_start();
 				echo $sql_i;
 				//$datos=mysqli_query($conn,$sql);
 				$datos2=mysqli_query($conn,$sql_i);
+				header("location:paginausuario_reservar.php");  
 			}else{
-				echo "El producto esta ocupado en esa franja horaria";
-			}
+				?>
+				    <script type="text/javascript">
+				    	prod_ocupado();
 
-			//header("location:paginausuario_reservar.php");  
+				    </script>
+				<?php
+
+				//header("location:pagina_reserva_p0.php");  
+			}
+			
+
+			
 		?>
 	</body>
 </html>
+
 <?php
 	// $hoy = date("Y-m-d H:i:s");
-	// $conn=mysqli_connect('localhost','root','','bd_intranet');
+	// $conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 	// $sql="UPDATE resources SET idEstado = 2 WHERE resources.idResource = $_REQUEST[id]";
 	// //echo $sql;
 	// //echo $_SESSION['resRecurso']."kjhsadkjfhksadjhfksajdfhksajdfh<br><br><br>";
@@ -67,7 +82,7 @@ session_start();
 	// header("location:paginausuario_reservar.php");  
 
 	// $hoy = date("Y-m-d H:i:s");
-	// $conn=mysqli_connect('localhost','root','','bd_intranet');
+	// $conn=mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 	// $sql_o="SELECT * FROM registers WHERE idresource = $_SESSION[idrecurso] AND data_fin IS NULL";
 	// $sql="UPDATE resources SET idEstado = 1 WHERE resources.idResource = $_SESSION[idrecurso]";
 	// $datos3=mysqli_query($conn,$sql_o);

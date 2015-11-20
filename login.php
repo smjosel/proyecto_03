@@ -6,7 +6,7 @@ $con = mysqli_connect($host, $usuari, $clau, $bd);
 **y los almacenamos en variables.*/
 $usuario = $_REQUEST["user"];   
 $password = $_REQUEST["pass"];
-$con = mysqli_connect('localhost','root','','bd_intranet');
+$con = mysqli_connect('mysql.hostinger.es','u114265056_root','1234567890','u114265056_intra');
 //Consulta de mysql con la que indicamos que necesitamos que seleccione
 $result = mysqli_query($con, "SELECT * FROM users WHERE nomUser = '$usuario'");
 //Validamos si el nombre del usuario existe en la base de datos o es correcto
@@ -34,7 +34,7 @@ if($row = mysqli_fetch_array($result))
 			}  
 		}else{
 	  	//En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
-	 	echo '<script language="javascript">
+	 	echo '<script languaje="javascript">
 			alert("Contraseña incorrecta");
 			document.location=("index.php");
 			</script>';
@@ -44,7 +44,8 @@ if($row = mysqli_fetch_array($result))
 	}
 }else{
  //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
-	echo '<script language="javascript">
+	echo "adsf";
+	echo '<script>
 		alert("Usuario incorrecto");
 		document.location=("index.php");
 		</script>';     

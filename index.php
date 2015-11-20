@@ -7,9 +7,9 @@
 	<title>Login</title>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
-    <script language="javascript" type="text/javascript">
+    <script>
         function desactivado(){
-            alert ("Usuario desactivado")
+            alert ("Usuario desactivado");
         }
     </script>
 </head>
