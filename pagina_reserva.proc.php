@@ -19,15 +19,17 @@ session_start();
 			$sql_comp="SELECT * FROM registers WHERE idResource=$_REQUEST[id]";
 			$datos_comp=mysqli_query($conn,$sql_comp);
 			$num_filas = mysqli_num_rows($datos_comp);
-			if ($num_filas!=0){	
-				while($comp=mysqli_fetch_array($datos_comp)){
+			if ($num_filas!=0){
+				$bucle=1;
+				while(($comp=mysqli_fetch_array($datos_comp)) && ($bucle==1)){
 					if($comp['data_fin']>$_REQUEST['fini'] && $comp['data_fin']<=$_REQUEST['ffin']){
 						$generar=false;
-						$comp=0;
+						$bucle=0;
 						break;
 					}else{
 						if($comp['data_ini']>=$_REQUEST['fini'] && $comp['data_ini']<$_REQUEST['ffin']){
 							$generar=false;
+							$bucle=0;
 							break;
 						}else{
 							$generar=true;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2015 a las 12:58:17
+-- Tiempo de generación: 20-11-2015 a las 10:58:57
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.6.12
 
@@ -53,14 +53,17 @@ CREATE TABLE IF NOT EXISTS `registers` (
   `data_fin` datetime DEFAULT NULL,
   `idResource` int(11) NOT NULL,
   `idUser` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `registers`
 --
 
 INSERT INTO `registers` (`idRegister`, `data_ini`, `data_fin`, `idResource`, `idUser`) VALUES
-(22, '2015-11-06 11:25:19', '2015-11-06 11:25:22', 15, 1);
+(140, '2015-11-20 11:00:00', '2015-11-20 13:00:00', 11, 3),
+(144, '2015-11-20 16:00:00', '2015-11-20 17:00:00', 11, 3),
+(145, '2015-11-20 13:00:00', '2015-11-20 15:00:00', 11, 3),
+(146, '2015-11-20 15:00:00', '2015-11-20 16:00:00', 11, 3);
 
 -- --------------------------------------------------------
 
@@ -73,15 +76,15 @@ CREATE TABLE IF NOT EXISTS `resources` (
   `nomR` varchar(50) COLLATE utf8_bin NOT NULL,
   `idEstado` int(11) NOT NULL,
   `idRType` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `resources`
 --
 
 INSERT INTO `resources` (`idResource`, `nomR`, `idEstado`, `idRType`) VALUES
-(1, 'Aula de teoria 1', 1, 4),
-(2, 'Aula de teoria 2', 1, 4),
+(1, 'Aula de teoria 1', 2, 4),
+(2, 'Aula de teoria 2', 2, 4),
 (3, 'Aula de teoria 3', 1, 4),
 (4, 'Aula de teoria 4', 1, 4),
 (5, 'Aula de informatica 1', 1, 11),
@@ -89,14 +92,14 @@ INSERT INTO `resources` (`idResource`, `nomR`, `idEstado`, `idRType`) VALUES
 (7, 'Despacho entrevistas 1', 1, 5),
 (8, 'Despacho entrevistas 2', 1, 5),
 (9, 'Sala de reuniones 1', 1, 8),
-(10, 'Proyector 1', 1, 9),
+(10, 'Proyector 1', 2, 9),
 (11, 'Carro portatiles 1', 1, 1),
-(12, 'Portatil 1', 1, 10),
+(12, 'Portatil 1', 2, 10),
 (13, 'Portatil 2', 1, 10),
 (14, 'Portatil 3', 1, 10),
-(15, 'Movil 1', 1, 2),
-(16, 'Movil 2', 1, 2),
-(18, 'Todos los recursos', 1, 12);
+(15, 'Movil 1', 2, 2),
+(16, 'Movil 2', 2, 2),
+(17, 'Todos los recursos', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -136,19 +139,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `telf` int(9) NOT NULL,
   `password` varchar(20) COLLATE utf8_bin NOT NULL,
-  `privilegios` varchar(25) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `privilegios` varchar(20) COLLATE utf8_bin NOT NULL,
+  `user_v` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`idUser`, `nomUser`, `mail`, `telf`, `password`, `privilegios`) VALUES
-(1, 'Carlos Sanchez', 'carlos@intranet.es', 666554422, 'carsan', 'admin'),
-(2, 'Oscar Ortiz', 'oscar@intranet.es', 999887733, 'oscort', 'admin'),
-(3, 'Jose Luis Maseda', 'joseluis@intranet.es', 777332211, 'josmas', 'admin'),
-(4, 'Enric Gorriz', 'enric@intranet.es', 888775544, 'enrgor', 'member'),
-(5, 'Alejandro Moreno', 'alejandro@intranet.es', 444553366, 'alemor', 'member');
+INSERT INTO `users` (`idUser`, `nomUser`, `mail`, `telf`, `password`, `privilegios`, `user_v`) VALUES
+(1, 'Carlos San', 'carlos@intranet.es', 666554422, 'carsan', 'admin', 1),
+(2, 'Oscar Ortiz', 'oscar@intranet.es', 656871339, 'oscort', 'admin', 0),
+(3, 'Jose Luis Maseda', 'joseluis@intranet.es', 777332211, 'josmas', 'admin', 1),
+(4, 'Enric Gorriz', 'enric@intranet.es', 888775544, 'enrgor', 'member', 1),
+(5, 'Alejandro Moreno', 'alejandro@intranet.es', 444553366, 'alemor', 'member', 1),
+(6, 'Juan', 'juan@intranet.es', 689752344, 'juan123', 'member', 1);
 
 --
 -- Índices para tablas volcadas
@@ -206,12 +211,12 @@ ALTER TABLE `estadoinfo`
 -- AUTO_INCREMENT de la tabla `registers`
 --
 ALTER TABLE `registers`
-  MODIFY `idRegister` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `idRegister` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=147;
 --
 -- AUTO_INCREMENT de la tabla `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `idResource` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `idResource` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `resourcestype`
 --
@@ -221,7 +226,7 @@ ALTER TABLE `resourcestype`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUser` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `idUser` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --
